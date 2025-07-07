@@ -19,14 +19,15 @@ interface MobileLinesConfigSectionProps {
   onConfigChange: (config: MobileLinesConfig) => void;
 }
 
-export const MobileLinesConfigSection: React.FC<MobileLinesConfigSectionProps> = ({ 
-  config, 
-  planType, 
-  onConfigChange 
+export const MobileLinesConfigSection: React.FC<MobileLinesConfigSectionProps> = ({
+  config,
+  planType,
+  onConfigChange
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [showHelpModal, setShowHelpModal] = useState(false);
-  const [activeTab, setActiveTab] = useState('standard');
+  // const [activeTab, setActiveTab] = useState('standard');
+  const [activeTab, setActiveTab] = useState('lyriaon');
 
   // Auto-expand when config is enabled
   useEffect(() => {
@@ -44,7 +45,7 @@ export const MobileLinesConfigSection: React.FC<MobileLinesConfigSectionProps> =
   const toggleEnabled = () => {
     if (config.enabled) {
       // Si se desactiva, resetear todos los valores
-      onConfigChange({ 
+      onConfigChange({
         enabled: false,
         standard10GB: 0,
         standard70GB: 0,
@@ -73,13 +74,13 @@ export const MobileLinesConfigSection: React.FC<MobileLinesConfigSectionProps> =
     return 'Sin permanencia';
   };
 
-  const LineItem = ({ 
-    type, 
+  const LineItem = ({
+    type,
     title,
     subtitle,
     monthlyEnv,
     annualEnv
-  }: { 
+  }: {
     type: keyof Omit<MobileLinesConfig, 'enabled'>;
     title: string;
     subtitle: string;
@@ -194,8 +195,8 @@ export const MobileLinesConfigSection: React.FC<MobileLinesConfigSectionProps> =
         <div className="flex items-center space-x-3">
           <div className="w-10 h-10 bg-lyria-pink rounded-lg flex items-center justify-center">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="5" y="2" width="14" height="20" rx="2" ry="2" stroke="#ff1066" strokeWidth="2"/>
-              <line x1="12" y1="18" x2="12.01" y2="18" stroke="#ff1066" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2" stroke="#ff1066" strokeWidth="2" />
+              <line x1="12" y1="18" x2="12.01" y2="18" stroke="#ff1066" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
           <div>
@@ -203,7 +204,7 @@ export const MobileLinesConfigSection: React.FC<MobileLinesConfigSectionProps> =
           </div>
         </div>
         <div className="flex items-center space-x-4">
-          <Checkbox 
+          <Checkbox
             checked={config.enabled}
             onCheckedChange={toggleEnabled}
             onClick={(e) => e.stopPropagation()}
@@ -217,28 +218,26 @@ export const MobileLinesConfigSection: React.FC<MobileLinesConfigSectionProps> =
           {/* Tab Navigation */}
           <div className="bg-gray-100 rounded-lg p-1 flex items-center justify-between">
             <div className="flex space-x-1">
-              <button
+              {/* <button
                 onClick={() => setActiveTab('standard')}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  activeTab === 'standard'
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${activeTab === 'standard'
                     ? 'bg-white text-lyria-text shadow-sm'
                     : 'text-gray-600 hover:text-lyria-text'
-                }`}
+                  }`}
               >
                 Standard
-              </button>
+              </button> */}
               <button
                 onClick={() => setActiveTab('lyriaon')}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  activeTab === 'lyriaon'
-                    ? 'bg-white text-lyria-text shadow-sm'
-                    : 'text-gray-600 hover:text-lyria-text'
-                }`}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${activeTab === 'lyriaon'
+                  ? 'bg-white text-lyria-text shadow-sm'
+                  : 'text-gray-600 hover:text-lyria-text'
+                  }`}
               >
                 Lyria ON
               </button>
             </div>
-            <button 
+            <button
               onClick={() => setShowHelpModal(true)}
               className="flex items-center space-x-2 text-sm font-bold text-lyria-pink ml-4 hover:no-underline"
             >

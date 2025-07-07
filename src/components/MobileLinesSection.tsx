@@ -36,7 +36,7 @@ export const MobileLinesSection: React.FC<MobileLinesProps> = ({ lines, onLinesC
               ¿Cuál elijo?
             </button>
           </div>
-          
+
           <div className="text-sm text-gray-600">
             Configura tus líneas móviles según tus necesidades.
           </div>
